@@ -29,13 +29,12 @@ if(array_key_exists('submit', $_POST)){
   if(empty($_POST['description'])){
     $error['description']="Enter a description";
   }
-  if(empty($_POST['avalability'])){
-    $error['avalability']="select  avalability";
-  }
+
   if (empty($_POST['category'])) {
     $error['category']= "Select Category";
  }
   if(empty($error)){
+    $_POST['avalability'] = "hide";
     $ver['a'] = compressImage($_FILES,'upload',90, 'uploads/' );
     $clean = array_map('trim', $_POST);
     $firstn = $fname;
@@ -115,16 +114,7 @@ echo $display ?>
 <br/>
 <br/>
 <br/>
-  <div class="col-md-4 col-sm-4 col-xs-12 search-bar search-bar-nostyle">
-<div class="input-group-addon search-category-container">
-<label class="control-labell">Avalability </label>  <?php $display = displayErrors($error, 'avalability');
-  echo $display ?><br><select class="dropdown-product selectpicker" name="avalability">
-<option value="hide">
---Admin Decision--
-</option>
-</select>
-</div>
-</div>
+
 <br/>
 <br/>
 <br/>

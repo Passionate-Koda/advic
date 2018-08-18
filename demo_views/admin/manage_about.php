@@ -4,6 +4,9 @@ session_start();
 include("include/link_include.php");
 include("include/authentication.php");
 include("include/levelcheck.php");
+include("include/student_limit.php");
+
+
 authenticate();
 if(isset($_SESSION['id'])){
   $session = $_SESSION['id'];
@@ -13,22 +16,28 @@ extract($info);
 $fname = ucwords($firstname);
 $lname = ucwords($lastname);
  ?>
+
+
 <div id="content">
 <div class="container">
 <div class="row">
   <?php if (isset($_GET['success'])){
   $msg = str_replace('_', ' ', $_GET['success']);
+
     echo '<div class="col-md-12">
   <div class="inner-box posting">
   <div class="alert alert-success alert-lg" role="alert">
   <h2 class="postin-title">✔ Successful! '.$msg.' </h2>
-  <p>Thank you '.ucwords($firstname).', BoardSpeck is happy to have you around. </p>
+  <p>Thank you, SkyHeights Academy is happy to have you around. </p>
   </div>
   </div>
   </div>';
   } ?>
+
+
 <!-- <div class="col-sm-3 page-sideabr">
 <aside>
+
 <div class="inner-box">
 <div class="widget-title">
 <h4>Advertisement</h4>
@@ -38,26 +47,21 @@ $lname = ucwords($lastname);
 </aside>
 </div> -->
 <div class="col-sm-9 page-content" style="width:100%;overflow-x:scroll; ">
+
 <h2 class="title-2"><i class="fa fa-star-o"></i> Manage Content</h2>
 <br>
 <div class="table-responsive">
 <table class="table table-striped table-bordered add-manage-table">
   <tr>
-    <th>Body(Click To Preview)</th>
-    <th>Image(Click To Edit)</th>
-    <th>Created By</th>
+    <th>About Us</th>
+    <th>Image</th>
+    <th>Last Editted By</th>
     <th>Date Uploaded</th>
     <th>Edit</th>
-    <th>Delete</th>
   </tr>
 <tbody>
-<?php
-if($level == "MASTER" || $level == 2 || $level == 3){
-getAbout($conn,'about', $_SESSION['id']);
-}else{
-      PgetResource($conn,'about',$_SESSION['id']);
-}
-?>
+
+<?php getAbout($conn,$_SESSION['id']); ?>
 <!-- <td class="">
 <h4><a href="">Name</a></h4>
 <p> <strong> Link </strong>:
@@ -77,6 +81,7 @@ her
 <td class="add-img-td">
 her
 </td>
+
 <td class="ads-details-td">
   <a href="#"><button class="btn btn-common btn-sm" type="submit">Edit</button></a>
 </td>
@@ -93,6 +98,7 @@ her
    <button class="btn btn-basic btn-sm" type="submit">Hide</button>
   </a>
 </td> -->
+
 <!-- </tr>
 <tr>
 <td class="add-img-td">
@@ -165,13 +171,18 @@ her
   </a>
 </td>
 </tr> -->
+
 </tbody>
 </table>
 </div>
+
 </div>
 </div>
 </div>
 </div>
+
+
+
 <script type="text/javascript" src="assets/js/jquery-min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/material.min.js"></script>
@@ -189,5 +200,6 @@ her
 <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
 <script src="assets/js/bootstrap-select.min.js"></script>
 </body>
+
 <!-- Mirrored from demo.graygrids.com/themes/classix-template/account-saved-search.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Nov 2017 11:42:23 GMT -->
 </html>

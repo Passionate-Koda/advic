@@ -12,7 +12,7 @@ function getInsight($dbconn){
   }
 }
 function getEntityCategoryAdmin($dbconn,$tb,$nm,$gid){
-  $stmt = $dbconn->prepare("SELECT $nm FROM $tb WHERE hash_id=:gid");
+  $stmt = $dbconn->prepare("SELECT $nm FROM $tb WHERE id=:gid");
   $stmt->bindParam(":gid", $gid);
   $stmt->execute();
   $nm = $stmt->fetch(PDO::FETCH_BOTH);
@@ -922,6 +922,53 @@ function getEditInfo($dbconn,$get,$tb){
   }
   return $result;
 }
+function frontageDetail($db,$get){
+  $stmt= $db->prepare("SELECT * FROM frontage WHERE id=:id");
+  $stmt -> bindParam(":id", $get['id']);
+  $stmt->execute();
+  while($record = $stmt->fetch(PDO::FETCH_BOTH)){
+    return $record;
+  }
+}
+function viewFrontage($db){
+
+  $stmt= $db->prepare("SELECT * FROM frontage");
+
+  $stmt->execute();
+
+
+  while($record = $stmt->fetch()){
+    echo "<tr>";
+    echo "<td>".$record['header_title']."</td>";
+    echo "<td>".$record['text']."</td>";
+    echo "<td><div style='width:150px; height:100px; background:url(".$record['image']."); background-size: cover; background-position: center; background-repeat: no-repeat;'></div></td>";
+    echo "<td><a href=\"delete_frontage?id=".$record['id']."\"><span class=\"label label-danger\">Delete</span></a></td>";
+    echo "</tr>";
+  }
+}
+function deleteFrontage($db, $get){
+  $gt = frontageDetail($db, $get);
+  extract($gt);
+  $img = $image;
+
+
+  $stmt= $db->prepare("DELETE FROM frontage WHERE id=:id");
+
+  $stmt -> bindParam(":id", $get['id']);
+
+  $stmt->execute();
+  if(file_exists($img)){
+    unlink($img);
+  }
+  $success = "Done";
+
+
+header("Location:manageViews?success=$success");
+
+}
+
+
+
 function getEditInfo1($dbconn,$get,$tb){
   $result = [];
   $stmt = $dbconn->prepare("SELECT * FROM $tb WHERE id=:gt");
@@ -989,6 +1036,9 @@ function editImage($dbconn,$destn,$del,$get,$tb){
   if($tb == "product"){
     header("location:viewProducts");
   }
+  if($tb == "about"){
+    header("location:manageAbout");
+  }
 }
 function previewBody($string, $count){
   $original_string = $string;
@@ -1013,7 +1063,7 @@ function getServicesView($dbconn,$get){
       '.$author.'</p>
       </td>
       <td class="ads-details-td">
-      <a href="viewBody?id='.$hash_id.'&t=campus_article"><p>'.$bd.'</p></a>
+      <a href="viewBody?id='.$hash_id.'&t=services"><p>'.$bd.'</p></a>
       </td>
       <td class="add-img-td">
       <a href="editImage?id='.$hash_id.'&t=services">
@@ -1038,10 +1088,10 @@ function getServicesView($dbconn,$get){
       </a>
       </td>
       <td class="price-td">
-      <a href="show?id='.$hash_id.'&t=campus_article">
+      <a href="show?id='.$hash_id.'&t=services">
       <button class="btn btn-success btn-sm" type="submit">Show</button>
       </a>
-      <a href="hide?id='.$hash_id.'&t=campus_article">
+      <a href="hide?id='.$hash_id.'&t=services">
       <button class="btn btn-basic btn-sm" type="submit">Hide</button>
       </a>
       </td></tr>';
@@ -1053,10 +1103,10 @@ function getServicesView($dbconn,$get){
       '.$author.'</p>
       </td>
       <td class="ads-details-td">
-      <a href="viewBody?id='.$hash_id.'&t=campus_article"><p>'.$bd.'</p></a>
+      <a href="viewBody?id='.$hash_id.'&t=services"><p>'.$bd.'</p></a>
       </td>
       <td class="add-img-td">
-      <a href="editImage?id='.$hash_id.'&t=campus_article">
+      <a href="editImage?id='.$hash_id.'&t=services">
       <img class="img-responsive" src="'.$image_1.'">
       </a>
       </td>
@@ -1086,7 +1136,7 @@ function getServicesView($dbconn,$get){
       '.$author.'</p>
       </td>
       <td class="ads-details-td">
-      <a href="viewBody?id='.$hash_id.'&t=campus_article"><p>'.$bd.'</p></a>
+      <a href="viewBody?id='.$hash_id.'&t=services"><p>'.$bd.'</p></a>
       </td>
       <td class="add-img-td">
       <a href="#">
@@ -1399,7 +1449,7 @@ function getProject($dbconn,$get){
       <a href="editProject?id='.$hash_id.'"><button class="btn btn-common btn-sm" type="submit">Edit</button></a>
       </td>
       <td class="price-td">
-      <a href="deleteProject?id='.$hash_id.'">
+      <a href="deleteProject?id='.$hash_id.'&t=project">
       <button class="btn btn-danger btn-sm" type="submit">Delete</button>
       </a>
       </td>
@@ -2718,13 +2768,13 @@ function getAbout($dbconn, $get){
       <a href="viewBody?id='.$id.'&t=about"><p>'.$bd.'</p></a>
       </td>
         <td class="add-img-td">
-      '.$image_1.'
+        <a href="editImage?id='.$hash_id.'&t=about">
+        <img class="img-responsive" src="'.$image_1.'">
+        </a>
       </td>
+
       <td class="add-img-td">
-      '.$added_by.'
-      </td>
-      <td class="add-img-td">
-      '.$last_edited_by.'
+      '.$created_by.'
       </td>
       <td class="add-img-td">
       '.$date_created.'
@@ -2790,6 +2840,24 @@ function updateProduct($dbconn,$post,$sess,$get){
   $success = "edited Successfully";
   $succ = preg_replace('/\s+/', '_', $success);
   header("Location:/ViewProducts?success=$succ");
+}
+function updateProject($dbconn,$post,$sess,$get){
+
+
+  $stmt = $dbconn->prepare("UPDATE project SET project_name=:tt, project_location = :pri, about=:dec, created_by=:sess,  date_created=NOW(), time_created=NOW() WHERE hash_id=:get");
+  $stmt->bindParam(":tt", $post['project_name']);
+   $stmt->bindParam(":pri", $post['project_location']);
+    $stmt->bindParam(":dec", $post['about']);
+  $stmt->bindParam(":get", $get);
+  $stmt->bindParam(":sess", $sess);
+  $stmt->execute();
+  if(isset($_SESSION['id'])){
+    $sess = $_SESSION['id'];
+  }
+
+  $success = "edited Successfully";
+  $succ = preg_replace('/\s+/', '_', $success);
+  header("Location:/manageProjects?success=$succ");
 }
 function getProducts($dbconn,$tb,$get){
   $stmt = $dbconn->prepare("SELECT * FROM $tb ORDER BY product_id DESC");
@@ -3104,7 +3172,7 @@ function deleteCategory($dbconn,$img,$hid){
   $stmt->execute();
   $success = "Deleted";
   $succ = preg_replace('/\s+/', '_', $success);
-  header("Location:/manageExploits?success=$succ");
+  header("Location:/manageCategory?success=$succ");
 }
 function deleteInsight($dbconn,$img,$hid){
   $myFile = $img;
@@ -3473,7 +3541,7 @@ function getQuote($dbconn, $get){
       '.$adress.'
       </td>
       <td class="ads-details-td">
-      <a href="viewBody?id='.$hash_id.'&t=service_booking"><p>'.$bd.'</p></a>
+      <a href="viewBody?id='.$hash_id.'&t=quote"><p>'.$bd.'</p></a>
       </td>
       <td class="add-img-td">
       '.$quantity.'
@@ -3490,76 +3558,8 @@ function getQuote($dbconn, $get){
       </a>
       </td></tr>';
     }
-    if($level == 2 || $level == 4 || $level == 5 || $level == 6){
-      echo '<tr><td class="ads-details-td">
-      <h4><a href="">'.$title.'</a></h4>
-      <p> <strong> Author </strong>:
-      '.$author.'</p>
-      <p> <strong> Category </strong>:
-      '.$category.'</p>
-      </td>
-      <td class="ads-details-td">
-      <a href="viewBody?id='.$hash_id.'&t=blog"><p>'.$bd.'</p></a>
-      </td>
-      <td class="add-img-td">
-      <a href="editImage?id='.$hash_id.'&t=blog">
-      <img class="img-responsive" src="'.$image_1.'">
-      </a>
-      </td>
-      <td class="add-img-td">
-      '.$created_by.'
-      </td>
-      <td class="add-img-td">
-      '.$date_created.'
-      </td>
-      <td class="add-img-td">
-      '.$visibility.'
-      </td>
-      <td class="ads-details-td">
-      <a href="editArticle?id='.$hash_id.'"><button class="btn btn-common btn-sm" type="submit">Edit</button></a>
-      </td>
-      <td class="price-td">
-      <p>You cannnot perform this action</p>
-      </td>
-      <td class="price-td">
-      <p>You cannnot perform this action</p>
-      </td></tr>';
-    }
-    if($level == 1){
-      echo '<tr><td class="ads-details-td">
-      <h4><a href="">'.$title.'</a></h4>
-      <p> <strong> Author </strong>:
-      '.$author.'</p>
-      <p> <strong> Category </strong>:
-      '.$category.'</p>
-      </td>
-      <td class="ads-details-td">
-      <a href="viewBody?id='.$hash_id.'&t=blog"><p>'.$bd.'</p></a>
-      </td>
-      <td class="add-img-td">
-      <a href="#">
-      <img class="img-responsive" src="'.$image_1.'">
-      </a>
-      </td>
-      <td class="add-img-td">
-      '.$created_by.'
-      </td>
-      <td class="add-img-td">
-      '.$date_created.'
-      </td>
-      <td class="add-img-td">
-      '.$visibility.'
-      </td>
-      <td class="ads-details-td">
-      <p>You cannnot perform this action</p>
-      </td>
-      <td class="price-td">
-      <p>You cannnot perform this action</p>
-      </td>
-      <td class="price-td">
-      <p>You cannnot perform this action</p>
-      </td></tr>';
-    }
+
+
   }
 }
 function PgetQuote($dbconn,$get){

@@ -112,7 +112,7 @@ switch ($uri[1]) {
   include APP_PATH."/views/admin/final_category.php";
   break;
 
-  
+
 
   case "final_category":
   include APP_PATH."/views/admin/final_category.php";
@@ -179,7 +179,7 @@ switch ($uri[1]) {
   include APP_PATH."/views/users/users_quote.php";
   break;
 
- 
+
 
 
 
@@ -282,7 +282,7 @@ switch ($uri[1]) {
   case "services":
   include APP_PATH."/views/users/users_services.php";
   break;
-  
+
 
    case "login?user_id=$user_id":
   include APP_PATH."/views/users/users_login.php";
@@ -291,13 +291,13 @@ switch ($uri[1]) {
 
   case "user_login?msg=$msg":
   include APP_PATH."/views/users/users_login.php";
-  break;      
+  break;
 
   case "register":
   include APP_PATH."/views/users/users_register.php";
   break;
 
-  
+
    case "register?user_id=$user_id":
   include APP_PATH."/views/users/users_register.php";
   break;
@@ -312,13 +312,13 @@ switch ($uri[1]) {
   include APP_PATH."/views/users/ajax/get_product.php";
   break;
 
-  
+
 
   case "addProject":
   include APP_PATH."/demo_views/admin/add_project.php";
   break;
 
-  
+
 
   case "manageProjects":
   include APP_PATH."/demo_views/admin/view_project.php";

@@ -48,11 +48,10 @@ if(array_key_exists('submit', $_POST)){
   if(empty($_POST['body'])){
     $error['body']="Enter a body";
   }
-  if(empty($_POST['visibility'])){
-    $error['visibility']="Enter a Visibility";
-  }
+
 
   if(empty($error)){
+    $_POST['visibility'] = "hide";
     $ver['a'] = compressImage($_FILES,'upload',90, 'uploads/' );
 
     $clean = array_map('trim', $_POST);
@@ -119,14 +118,7 @@ echo $display ?>
   <div class="col-md-4 col-sm-4 col-xs-12 search-bar search-bar-nostyle">
 <div class="input-group-addon search-category-container">
 
-<label class="control-labell">VISIBILITY </label>  <?php $display = displayErrors($error, 'visibility');
-  echo $display ?><br><select class="dropdown-product selectpicker" required name="visibility">
-<option value="hide">
---Admin Decision--
-</option>
 
-
-</select>
 
 </div>
 </div>

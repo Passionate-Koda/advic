@@ -96,7 +96,7 @@ echo $display ?>
   <br/>
   <div class="col-md-4 col-sm-4 col-xs-12 search-bar search-bar-nostyle">
 <div class="input-group-addon search-category-container">
-<label class="control-labell">Category </label>  <?php $display = displayErrors($error, 'category');
+<label class="control-labell">Category (<?php $categ = getEntityCategoryAdmin($conn,'category','category_name',$edit_info['category']); echo $categ['category_name'];?>) </label>  <?php $display = displayErrors($error, 'category');
   echo $display ?><br><select class="dropdown-product selectpicker" name="category">
 <option value="">
 --Select--

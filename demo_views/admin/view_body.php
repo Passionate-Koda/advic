@@ -13,7 +13,7 @@ extract($info);
 $fname = ucwords($firstname);
 $lname = ucwords($lastname);
 $edit_info = getEditInfo($conn,$_GET['id'],$_GET['t']);
-$edit_info2 = getEditInfo2($conn,$_GET['id'],$_GET['t']);
+// $edit_info2 = getEditInfo2($conn,$_GET[``'id'],$_GET['t']);
  ?>
 
 
@@ -85,9 +85,24 @@ $edit_info2 = getEditInfo2($conn,$_GET['id'],$_GET['t']);
     <?php getEventBody($conn,$_GET['id'],$_GET['t']) ?>
 <?php }elseif($_GET['t'] ==  "about"){ ?>
 
-  <?php echo $edit_info2['about'] ?>
+  <?php
+$edit_info2 = getEditInfo2($conn,$_GET['id'],$_GET['t']);
+   echo $edit_info2['body'] ?>
+<?php }elseif($_GET['t'] ==  "project"){ ?>
+<h4 class="post-title"><a href="#"><?php echo $edit_info['project_name'] ?></a></h4>
+  <?php echo $edit_info['about'] ?>
 
+<?php }elseif($_GET['t'] ==  "product"){ ?>
+<h4 class="post-title"><a href="#"><?php echo $edit_info['product_name'] ?></a></h4>
+  <?php echo $edit_info['description'] ?>
 
+<?php }elseif($_GET['t'] ==  "service_booking"){ ?>
+<h4 class="post-title"><a href="#"><?php echo $edit_info['name'] ?></a></h4>
+  <?php echo $edit_info['service_order'] ?>
+
+<?php }elseif($_GET['t'] ==  "quote"){ ?>
+<h4 class="post-title"><a href="#"><?php echo $edit_info['name'] ?></a></h4>
+  <?php echo $edit_info['customer_order'] ?>
 
 <?php }else{ ?>
   <h4 class="post-title"><a href="#"><?php echo $edit_info['title'] ?></a></h4>

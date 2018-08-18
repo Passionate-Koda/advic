@@ -84,7 +84,7 @@ switch ($uri[1]) {
   case "addInsight":
   include APP_PATH."/demo_views/admin/add_insights.php";
   break;
-  
+
   case "contents":
   include APP_PATH."/demo_views/admin/content.php";
   break;
@@ -131,12 +131,15 @@ switch ($uri[1]) {
   case "addServices?success=$success":
   include APP_PATH."/demo_views/admin/add_services.php";
   break;
+  case "delete_frontage?id=$id":
+  include APP_PATH."/demo_views/admin/delete_frontage.php";
+  break;
 
   case "ServicesOrders":
   include APP_PATH."/demo_views/admin/viewService_order.php";
   break;
 
-  
+
 
   case "quote":
   include APP_PATH."/demo_views/admin/view_quotes.php";
@@ -224,6 +227,14 @@ switch ($uri[1]) {
 
   case "deleteProduct?id=$id&t=$t":
   include APP_PATH."/demo_views/admin/delete_product.php";
+  break;
+
+  case "editProject?id=$id":
+  include APP_PATH."/demo_views/admin/edit_project.php";
+  break;
+
+  case "deleteProject?id=$id&t=$t":
+  include APP_PATH."/demo_views/admin/delete_project.php";
   break;
 
   case "log":

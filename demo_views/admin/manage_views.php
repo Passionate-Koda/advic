@@ -5,6 +5,7 @@ include("include/link_include.php");
 include("include/authentication.php");
 include("include/levelcheck.php");
 include("include/student_limit.php");
+include("include/level1_limit.php");
 authenticate();
 if(isset($_SESSION['id'])){
   $session = $_SESSION['id'];
@@ -60,6 +61,56 @@ $msg = str_replace('_', ' ', $_GET['success']);
 }
 
  ?>
+
+
+
+
+
+ <h3>FRONTAGE SLIDER</h3>
+ <hr>
+ <h5>MANAGE FRONTAGE SLIDER</h5>
+ <div  class="alert alert-info" role="alert">
+  <strong>NOTE</strong>
+  <p><strong>*</strong>This SLIDER is displayed on the Home Page of the Skyheights Academy page</p>
+  <p><strong>*</strong>If you press Delete, the particular slide will be deleted</p>
+ </div>
+ <div class="bs-docs-example">
+   <table class="table table-striped table-hover" >
+     <tr>
+       <th width="100">TITLE</th>
+       <th>TEXT</th>
+       <th width="100">IMAGE</th>
+     </tr>
+     <tbody>
+       <?php
+       $vis = "show";
+       viewFrontage($conn) ?>
+     </tbody>
+   </table>
+ </div>
+ <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="col-sm-12 col-md-10 col-md-offset-1">
 <div class="page-ads box">
 <h2 class="title-2">Welcome to the Manage views Page</h2>
@@ -81,7 +132,9 @@ $msg = str_replace('_', ' ', $_GET['success']);
 <?php $display = displayErrors($error, 'txt');
 echo $display ?>
 <div class="form-group mb30">
-<label class="control-label">Text</label> <input class="form-control input-md" name="txt" placeholder="Enter your text here"  type="text">
+<label class="control-label">Text</label>
+<textarea class="form-control"  id="editor1" name="txt" placeholder="Write your text here" rows="4"></textarea>
+<!-- <input class="form-control input-md" name="txt" placeholder="Enter your text here"  type="text"> -->
 
 <h2 class="title-2">Add Images to Public</h2>
 <?php $display = displayErrors($error, 'upload');
@@ -102,6 +155,29 @@ echo $display ?>
 </section>
 
 <a class="back-to-top" href="#"><i class="fa fa-angle-up"></i></a>
+
+<script type="text/javascript">
+ CKEDITOR.replace( 'editor1',
+ {
+		toolbarGroups :
+		[
+      	{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+        	{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+          { name: 'links' },
+            { name: 'insert' },
+              	{ name: 'others' },
+            	{ name: 'forms' },
+            { name: 'tools' },
+            '/',
+            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+            { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+            { name: 'styles' },
+            { name: 'colors' },
+		]
+	});
+</script>
+
+
 <script src="assets/js/jquery-min.js" type="text/javascript">
   </script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript">
