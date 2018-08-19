@@ -69,7 +69,7 @@ function doAdminRegister($dbconn, $input){
   try{
   $rnd = rand(0000000000,9999999999);
     $split = $input['firstname'];
-    $id = $rnd.$split;
+    $id = $rnd.cleans($split);
   $hash_id = str_shuffle($id);
 
   $hash = password_hash($input['pword'], PASSWORD_BCRYPT);
@@ -497,7 +497,7 @@ catch(PDOException $e){
 }
 function addProject($dbconn,$post,$destn, $sess){
   $rnd = rand(0000000000,9999999999);
-  $id = $rnd.$sess;
+  $id = $rnd.cleans($sess).rnd;
   $hash_id = $id;
   $stmt = $dbconn->prepare("INSERT INTO project VALUES(NULL, :hid, :nm,:lk,:ab,:img,NOW(),NOW(),:sess)");
   $data = [
@@ -516,7 +516,7 @@ function addProject($dbconn,$post,$destn, $sess){
 }
 function addCategory($dbconn,$post, $sess){
    $rnd = rand(0000000000,9999999999);
-  $id = $rnd.$post['category'];
+  $id = $rnd.cleans($post['category']);
   $hash_id = $id;
   $stmt = $dbconn->prepare("INSERT INTO category VALUES(NULL, :hid, :qs,:sess, NOW())");
   $data = [
@@ -545,7 +545,7 @@ function addPackageName($dbconn,$post, $sess){
   try{
   $rnd = rand(0000000000,9999999999);
   $split = $_POST['package_name'];
-  $id = $rnd.$split;
+  $id = $rnd.cleans($split);
   $hash_id = str_shuffle($id);
   $stmt = $dbconn->prepare("INSERT INTO package_name VALUES(NULL,:pn,:hid,NOW(),NOW(),:sess)");
   $data = [
@@ -569,7 +569,7 @@ function addNewsCategory($dbconn,$post, $sess){
   try{
   $rnd = rand(0000000000,9999999999);
   $split = $_POST['package_name'];
-  $id = $rnd.$split;
+  $id = $rnd.cleans($split);
   $hash_id = str_shuffle($id);
   $stmt = $dbconn->prepare("INSERT INTO news_category VALUES(NULL,:pn,:hid,NOW(),NOW(),:sess)");
   $data = [
@@ -772,7 +772,7 @@ function editServices($dbconn,$post,$gid){
 }
 function editCategory($dbconn,$post,$gid){
     $rnd = rand(0000000000,9999999999);
-  $id = $rnd.$post['category'];
+  $id = $rnd.cleans($post['category']);
   $hash_id = $id;
   $stmt = $dbconn->prepare("UPDATE category SET category_name=:tt, hash_id=:h   WHERE hash_id=:hid");
   $stmt->bindParam(":tt", $post['category']);
@@ -3175,17 +3175,25 @@ function deleteCategory($dbconn,$img,$hid){
   header("Location:/manageCategory?success=$succ");
 }
 function deleteInsight($dbconn,$img,$hid){
-  $myFile = $img;
-  $stmt = $dbconn->prepare("DELETE FROM insight WHERE hash_id=:hid");
+
+  $stmt = $dbconn->prepare("DELETE FROM quote WHERE hash_id=:hid");
   $stmt->bindParam(":hid", $hid);
   $stmt->execute();
-  if(file_exists($myFile)){
-    unlink($myFile) or die("Couldn't delete file");
-  }
+
   $success = "Deleted";
   $succ = preg_replace('/\s+/', '_', $success);
-  header("Location:/manageInsights?success=$succ");
+  header("Location:/quote?success=$succ");
 }
+
+function deleteServiceOrder($dbconn,$hid){
+  $stmt = $dbconn->prepare("DELETE FROM service_booking WHERE hash_id=:hid");
+  $stmt->bindParam(":hid", $hid);
+  $stmt->execute();
+  $success = "Deleted";
+  $succ = preg_replace('/\s+/', '_', $success);
+  header("Location:/ServicesOrders?success=$succ");
+}
+
 function deleteEvent($dbconn,$hid){
   $stmt = $dbconn->prepare("DELETE FROM event WHERE hash_id=:hid");
   $stmt->bindParam(":hid", $hid);
@@ -3323,7 +3331,7 @@ function getServiceOrder($dbconn, $get){
       '.$time_created.'
       </td>
       <td class="price-td">
-      <a href="deleteInsight?id='.$hash_id.'">
+      <a href="deleteServiceOrder?id='.$hash_id.'">
       <button class="btn btn-danger btn-sm" type="submit">Delete</button>
       </a>
       </td></tr>';

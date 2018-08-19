@@ -10,7 +10,7 @@ $page_title = "Project View";
 
   }else{
    header("Location:project");
- } z
+ } 
    $recent = recentProjectPost($conn);
 
  ?>

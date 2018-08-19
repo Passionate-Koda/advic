@@ -45,7 +45,7 @@
                 <!-- RD Navbar Toggle-->
                 <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                 <!-- RD Navbar Brand-->
-                <div class="rd-navbar-brand"><a class="brand-name" href="/"><img class="desktop-element" src="images/advic.png" alt="" width="228" height="39"/><img class="mobile-element" src="images/advic.png" alt="" width="227" height="40"/></a></div>
+                <div class="rd-navbar-brand"><a class="brand-name" href="/"><img class="desktop-element" src="images/advic1.png" alt="" width="228" height="39"/><img class="mobile-element" src="images/advic1.png" alt="" width="227" height="40"/></a></div>
               </div>
               <div class="rd-navbar-aside rd-navbar-collapse">
                 <address class="contact-info">

@@ -53,6 +53,7 @@ if(array_key_exists('submit', $_POST)){
   }
 
   if(empty($error)){
+        $_POST['visibility'] = "hide";
     $ver['a'] = compressImage($_FILES,'upload',90, 'uploads/' );
 
     $clean = array_map('trim', $_POST);
@@ -67,9 +68,7 @@ if(array_key_exists('submit', $_POST)){
      $headers = "From: info@boardspeck.com" . "\r\n" .
      "CC: banjimayowa@gmail.com";
      mail($to,$subject,$txt,$headers);
-
       addServices($conn, $clean,$ver,$hash_id);
-
   }
 }
  ?>
@@ -120,20 +119,7 @@ echo $display ?>
   <br>
   <br>
 
-  <div class="col-md-4 col-sm-4 col-xs-12 search-bar search-bar-nostyle">
-<div class="input-group-addon search-category-container">
 
-<label class="control-labell">VISIBILITY </label>  <?php $display = displayErrors($error, 'visibility');
-  echo $display ?><br><select class="dropdown-product selectpicker" required name="visibility">
-<option value="hide">
---Admin Decision--
-</option>
-
-
-</select>
-
-</div>
-</div>
 
 <br/>
 <br/>

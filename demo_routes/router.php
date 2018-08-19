@@ -138,10 +138,19 @@ switch ($uri[1]) {
   case "ServicesOrders":
   include APP_PATH."/demo_views/admin/viewService_order.php";
   break;
+  case "ServicesOrders?success=$success":
+  include APP_PATH."/demo_views/admin/viewService_order.php";
+  break;
+  case "deleteServiceOrder?id=$id":
+  include APP_PATH."/demo_views/admin/delete_service_order.php";
+  break;
 
 
 
   case "quote":
+  include APP_PATH."/demo_views/admin/view_quotes.php";
+  break;
+  case "quote?success=$success":
   include APP_PATH."/demo_views/admin/view_quotes.php";
   break;
 

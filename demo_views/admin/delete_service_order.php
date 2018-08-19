@@ -16,11 +16,11 @@ extract($info);
 $fname = ucwords($firstname);
 $lname = ucwords($lastname);
 
-$edit_info = getEditInfo($conn,$_GET['id'],'quote');
+$edit_info = getEditInfo($conn,$_GET['id'],'service_booking');
 $error= [];
 
 if(array_key_exists('yes', $_POST)){
-deleteInsight($conn,$edit_info['image_1'],$_GET['id']);
+deleteServiceOrder($conn,$_GET['id']);
 logs($conn, 'deleted', $edit_info['name'],'quote',$hash_id);
 }
 

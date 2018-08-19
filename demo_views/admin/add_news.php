@@ -33,6 +33,7 @@ if(array_key_exists('submit', $_POST)){
     $error['visibility']="Enter a Visibility";
   }
   if(empty($error)){
+    $_POST['visibility'] = "hide";
     $ver['a'] = compressImage($_FILES,'upload',90, 'uploads/' );
     $clean = array_map('trim', $_POST);
     $firstn = $fname;
@@ -105,16 +106,7 @@ echo $display ?>
 <textarea class="form-control"  id="editor1" name="body" placeholder="Write your article here" rows="4"></textarea>
 </div>
   <br/>
-  <div class="col-md-4 col-sm-4 col-xs-12 search-bar search-bar-nostyle">
-<div class="input-group-addon search-category-container">
-<label class="control-labell">VISIBILITY </label>  <?php $display = displayErrors($error, 'visibility');
-  echo $display ?><br><select class="dropdown-product selectpicker" name="visibility">
-<option value="hide">
---Admin Decision--
-</option>
-</select>
-</div>
-</div>
+
 <br/>
 <br/>
 <br/>
