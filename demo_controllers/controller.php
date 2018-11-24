@@ -130,19 +130,36 @@ function adminLogin($dbconn, $input){
 
 
 function compressImage($files, $name, $quality, $upDIR ) {
-  $rnd = rand(0000000, 9999999);
-  $strip_name = str_replace(" ", "_", $_FILES[$name]['name']);
-  $filename = $rnd.$strip_name;
-  $destination_url = $upDIR.$filename;
-  $info = getimagesize($files[$name]['tmp_name']);
-  if ($info['mime'] == 'image/jpeg')
-  $image = imagecreatefromjpeg($files[$name]['tmp_name']);
-  elseif ($info['mime'] == 'image/gif')
-  $image = imagecreatefromgif($files[$name]['tmp_name']);
-  elseif ($info['mime'] == 'image/png')
-  $image = imagecreatefrompng($files[$name]['tmp_name']);
-  imagejpeg($image, $destination_url, $quality) or die("error");
-  return $destination_url;
+  // die(var_dump($files[$name]['type']));
+    $rnd = rand(0000000, 9999999);
+    $strip_name = str_replace(" ", "_", $files[$name]['name']);
+    $filename = time()."mail".$strip_name;
+    $destination_url = $filename;
+    $info = getimagesize($files[$name]['tmp_name']);
+    if ($info['mime'] == 'image/jpeg')
+    $image = imagecreatefromjpeg($files[$name]['tmp_name']);
+    elseif ($info['mime'] == 'image/gif')
+    $image = imagecreatefromgif($files[$name]['tmp_name']);
+    elseif ($info['mime'] == 'image/png')
+    $image = imagecreatefrompng($files[$name]['tmp_name']);
+
+  $range1 = 100000;
+
+  $range2 = 500000;
+
+  $range3 = 1000000;
+
+    if($files[$name]['size'] >= 0  && $files[$name]['size'] <= $range1 ){
+      $quality = 100;
+    }elseif($files[$name]['size'] >= $range1  && $files[$name]['size'] <= $range2 ){
+        $quality = 90;
+    }elseif ($files[$name]['size'] >= $range2  && $files[$name]['size'] <= $range3) {
+    $quality =  70;
+    }else{
+    $quality =  20;
+    }
+    imagejpeg($image, $destination_url, $quality);
+    return $destination_url;
 }
 function addFrontage($dbconn,$post,$destination,$sess){
   try{
