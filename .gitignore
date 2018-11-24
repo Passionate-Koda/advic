@@ -1,5 +1,7 @@
 Vagrantfile
 .vagrant
+.gitignore
 www/phpmyadmin
 www/uploads
-demo_models
+demo_models/
+demo_models/model.php
