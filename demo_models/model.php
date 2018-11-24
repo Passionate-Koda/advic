@@ -1,7 +1,7 @@
 <?php
      define("DBNAME", 'advicFarms');
      define("DBUSER", 'root');
-     define("DBPASS", 'dre');
+     define("DBPASS", 'advic@.02');
 
          try{
 
