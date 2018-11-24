@@ -10,7 +10,8 @@
            $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
          }
          catch(PDOException $e) {
-                  die("Could Not Connect");
+                  die($e->getMessage());
+                  // die("Something Went Wrong");
        }
 
  ?>
