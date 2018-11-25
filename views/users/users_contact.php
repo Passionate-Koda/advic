@@ -22,11 +22,11 @@ $page_title = "Contact";
             <div class="cell-md-6 cell-sm-10 cell-xs-12">
               <h3>Addresses</h3>
               <div class="range range-30 range-center range-xxs">
-                <div class="cell-xs-6">
+                <div class="cell-xs-">
                   <address class="contact-info">
                     <ul class="list-contacts">
                       <li><a class="text-middle address" href="contacts.html">22,Eksuth Road, Similoluwa, Ado Ekiti. Ekiti State</a></li>
-                      <li class="list-tel">
+                      <li class="list-tel6">
                         <div class="p tel"><a class="text-gray text-middle" href="tel:08067353063">08067353063</a></div>
                         <div class="p tel"><a class="text-gray text-middle" href="tel:08067353063">08067353063</a></div>
                       </li>
