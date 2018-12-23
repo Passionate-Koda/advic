@@ -115,7 +115,7 @@ function adminLogin($dbconn, $input){
       $state->execute();
       $row = $state->fetch(PDO::FETCH_BOTH);
       extract($row);
-      $suc = 'Dear '.ucwords($firstname).', You Have Not been Verified as BoardSpeck Admin';
+      $suc = 'Dear '.ucwords($firstname).', You Have Not been Verified as Advic Admin';
       $message = preg_replace('/\s+/', '_', $suc);
       header("Location:adminLogin?wn=$message");
     }else{

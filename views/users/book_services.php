@@ -38,10 +38,10 @@ if(array_key_exists('submit', $_POST)){
   
     $uri = explode("/", $_SERVER['REQUEST_URI']);
     $url = $uri[1];
-     $to = "boardspeck@gmail.com";
-     $subject = "Boardspeck Web Office Content Upload";
+     $to = "advicsnails@gmail.com";
+     $subject = "Advic Admin Content Upload";
      $txt = "Hello Admin, a service has been booked for "."$url"." page at the back office. Kindly check.";
-     $headers = "From: info@boardspeck.com" . "\r\n" .
+     $headers = "From: info@advicfarms.com" . "\r\n" .
      "CC: banjimayowa@gmail.com";
      mail($to,$subject,$txt,$headers);
       submitServiceOrder($conn, $clean, $service_id);

@@ -65,7 +65,7 @@ $lname = ucwords($lastname);
 <!-- <td class="">
 <h4><a href="">Name</a></h4>
 <p> <strong> Link </strong>:
-BoardSpeck.com </p>
+advicfarms.com </p>
 </td>
 <td class="ads-details-td">
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>

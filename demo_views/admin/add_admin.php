@@ -1,4 +1,4 @@
-<?php
+Advic Admin<?php
 ob_start();
 session_start();
 // include("include/link_include.php");
@@ -44,14 +44,14 @@ if(array_key_exists('submit', $_POST)){
 
  //      $from = "info@mckodev.com.ng"; //enter your email address
  // $to = "banjimayowa@gmail.com"; //enter the email address of the contact your sending to
- // $subject = "BOARDSPECK New Admin User Registration"; // subject of your email
+ // $subject = "Advic Admin New Admin User Registration"; // subject of your email
 /*$firstname = $clean['firstname'];
 $lastname = $clean['lastname'];
 
- $to = "boardspeck@gmail.com";
- $subject = "Boardspeck Web Office Admin Registration";
+ $to = "Advic Admin@gmail.com";
+ $subject = "Advic Admin Admin Registration";
  $txt = "Hello Admin, A new Admin($firstname $lastname)  has registered to the web office. Kindly check for Verification";
- $headers = "From: info@boardspeck.com" . "\r\n" .
+ $headers = "From: info@Advic Admin.com" . "\r\n" .
  "CC: banjimayowa@gmail.com";
 
  mail($to,$subject,$txt,$headers);*/
@@ -69,8 +69,8 @@ $lastname = $clean['lastname'];
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="author" content="BoardSpeck">
-<title>BoardSpeck Web Office </title>
+<meta name="author" content="Advic Admin">
+<title>Advic </title>
 
 <link rel="shortcut icon" href="assets/img/favicon.png">
 
@@ -104,7 +104,7 @@ $lastname = $clean['lastname'];
 <div class="row">
 <div class="col-md-12">
 <div class="breadcrumb-wrapper">
-<h2 class="page-title">Register on the BoardSpeck Web Office</h2>
+<h2 class="page-title">Register on the Advic Admin</h2>
 </div>
 </div>
 </div>
@@ -124,7 +124,7 @@ $msg = str_replace('_', ' ', $_GET['success']);
 <div class="inner-box posting">
 <div class="alert alert-success alert-lg" role="alert">
 <h2 class="postin-title">✔ Congratulations! '.$msg.' </h2>
-<p>Thank you, BoardSpeck is happy to have you around. Your Account will be Verified and you will be notified Via your Email Address</p>
+<p>Thank you, Advic Admin is happy to have you around. Your Account will be Verified and you will be notified Via your Email Address</p>
 </div>
 </div>
 </div>';
