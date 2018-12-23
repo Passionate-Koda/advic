@@ -12,7 +12,7 @@
     <!-- Site Title-->
     <title>Advic Farms</title>
     <meta name="format-detection" content="telephone=no">
-      <meta name="yandex-verification" content="3c500ff277a391c2" />
+      <meta name="yandex-verification" content="6cadc7c811659953" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
