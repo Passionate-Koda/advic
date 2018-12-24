@@ -38,7 +38,7 @@ if(array_key_exists('submit', $_POST)){
 
     $uri = explode("/", $_SERVER['REQUEST_URI']);
     $url = $uri[1];
-     $to = "advicsnails@gmqail.com";
+     $to = "advicsnails@gmail.com";
      $subject = "Advic Admin Service Booking";
      $txt = "Hello Admin, a service has been booked for "."$url"." page at the back office. Kindly check.";
      $headers = "From: info@advicfarms.com" . "\r\n" .
