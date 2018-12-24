@@ -1,5 +1,5 @@
 
-<?php 
+<?php
  ob_start();
 $page_title = "We Buy";
   include "includes/header.php";
@@ -40,8 +40,8 @@ if(array_key_exists('submit', $_POST)){
     $uri = explode("/", $_SERVER['REQUEST_URI']);
     $url = $uri[1];
      $to = "advicsnails@gmail.com";
-     $subject = "Advic Admin Content Upload";
-     $txt = "Hello Admin, ($firstn $lastn)has added a content on "."$url"." page at the back office. Kindly check for and approval";
+     $subject = "Advic Admin Sellers Request";
+     $txt = "Hello Admin, there is a sellers request on your website. Kindly check for and proper attendance";
      $headers = "From: info@advicfarms.com" . "\r\n" .
      "CC: banjimayowa@gmail.com";
      mail($to,$subject,$txt,$headers);
@@ -81,10 +81,10 @@ if(array_key_exists('submit', $_POST)){
                    <div class="form-wrap">
                     <select  onchange="getSub(this.value)" class="form-control select-filter" data-minimum-results-for-search="Infinity" name="Category">
                       <option value="#">--Select Category--</option>
-                      <?php 
+                      <?php
                         foreach ($category as $key => $value) {
                             extract($value);
-                        
+
                        ?>
                       <option <?php echo 'value='.$id.'' ?>><?php echo $category_name; ?></option>
                       <?php } ?>
@@ -117,7 +117,7 @@ if(array_key_exists('submit', $_POST)){
             </div>
           </div>
           <script type="text/javascript">
-            
+
           function getSub(id){
 
               var url = 'getProduct';
@@ -134,7 +134,7 @@ if(array_key_exists('submit', $_POST)){
             if(xhr.readyState == 4){
                var res = xhr.responseText;
                console.log(res);
-                  
+
                 document.getElementById('sub').innerHTML = res ;
              }
          }
@@ -146,7 +146,7 @@ if(array_key_exists('submit', $_POST)){
 
           </script>
       <!-- Page Footer-->
-     <?php 
+     <?php
      include "includes/footer.php";
 
       ?>

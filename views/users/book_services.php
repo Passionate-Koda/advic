@@ -1,10 +1,10 @@
 
-<?php 
+<?php
  ob_start();
 $page_title = "Service Booking";
   include "includes/header.php";
   if (isset($_GET['hid'])) {
-      $service_id = $_GET['hid']; 
+      $service_id = $_GET['hid'];
   }else{
     header("Location:services");
   }
@@ -35,11 +35,11 @@ if(array_key_exists('submit', $_POST)){
 
     $clean = array_map('trim', $_POST);
 
-  
+
     $uri = explode("/", $_SERVER['REQUEST_URI']);
     $url = $uri[1];
-     $to = "advicsnails@gmail.com";
-     $subject = "Advic Admin Content Upload";
+     $to = "advicsnails@gmqail.com";
+     $subject = "Advic Admin Service Booking";
      $txt = "Hello Admin, a service has been booked for "."$url"." page at the back office. Kindly check.";
      $headers = "From: info@advicfarms.com" . "\r\n" .
      "CC: banjimayowa@gmail.com";
@@ -95,7 +95,7 @@ if(array_key_exists('submit', $_POST)){
             </div>
           </div>
       <!-- Page Footer-->
-     <?php 
+     <?php
      include "includes/footer.php";
 
       ?>

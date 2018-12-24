@@ -1,5 +1,5 @@
 
-<?php 
+<?php
   ob_start();
 $page_title = "We sell";
   include "includes/header.php";
@@ -12,7 +12,7 @@ $page_title = "We sell";
   $error= [];
 if(array_key_exists('submit', $_POST)){
      // die('here');
-  
+
   if(empty($_POST['name'])){
     $error['name']="Enter a Name";
   }
@@ -37,8 +37,8 @@ if(array_key_exists('submit', $_POST)){
     $uri = explode("/", $_SERVER['REQUEST_URI']);
     $url = $uri[1];
      $to = "advicsnails@gmail.com";
-     $subject = "Advic Admin Content Upload";
-     $txt = "Hello Admin, you have an order "."$url"." page at the back office. Kindly check";
+     $subject = "Advic Quote request";
+     $txt = "Hello Admin, you have an quote request on your website. Kindly check for appropriate attendance";
      $headers = "From: info@advicfarms.com" . "\r\n" .
      "CC: banjimayowa@gmail.com";
      mail($to,$subject,$txt,$headers);
@@ -98,7 +98,7 @@ if(array_key_exists('submit', $_POST)){
           </div>
 
       <!-- Page Footer-->
-     <?php 
+     <?php
      include "includes/footer.php";
 
       ?>
